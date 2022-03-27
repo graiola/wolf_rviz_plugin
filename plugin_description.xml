@@ -1,4 +1,11 @@
 <library path="lib/libwolf_rviz_plugin">
+  <class name="wolf_rviz_plugin/WolfControllerPanel"
+         type="wolf_rviz_plugin::WolfControllerPanel"
+         base_class_type="rviz::Panel">
+    <description>
+      A panel widget for the WoLF controller.
+    </description>
+  </class>
   <class name="wolf_rviz_plugin/Waypoints"
          type="wolf_rviz_plugin::WaypointsTool"
          base_class_type="rviz::Tool">

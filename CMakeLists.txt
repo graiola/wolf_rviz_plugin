@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(wolf_rviz_plugin)
-find_package(catkin REQUIRED COMPONENTS rviz)
+find_package(catkin REQUIRED COMPONENTS rviz rt_gui)
 catkin_package()
 include_directories(${catkin_INCLUDE_DIRS})
 link_directories(${catkin_LIBRARY_DIRS})
@@ -22,12 +22,13 @@ endif()
 
 ## I prefer the Qt signals and slots to avoid defining "emit", "slots",
 ## etc because they can conflict with boost signals, so define QT_NO_KEYWORDS here.
-add_definitions(-DQT_NO_KEYWORDS)
+#add_definitions(-DQT_NO_KEYWORDS)
 
 ## Here we specify the list of source files.
 ## The generated MOC files are included automatically as headers.
 set(SRC_FILES
   src/waypoints_tool.cpp
+  src/wolf_controller_panel.cpp
 )
 
 add_library(${PROJECT_NAME} ${SRC_FILES})

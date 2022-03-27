@@ -24,10 +24,6 @@ class ViewportMouseEvent;
 namespace wolf_rviz_plugin
 {
 
-// BEGIN_TUTORIAL
-// Here we declare our new subclass of rviz::Tool.  Every tool
-// which can be added to the tool bar is a subclass of
-// rviz::Tool.
 class WaypointsTool: public rviz::Tool
 {
 Q_OBJECT
