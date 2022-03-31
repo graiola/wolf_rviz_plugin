@@ -1,5 +1,5 @@
-#ifndef WOLF_CONTROLLER_PANEL_H
-#define WOLF_CONTROLLER_PANEL_H
+#ifndef WOLF_PANEL_H
+#define WOLF_PANEL_H
 
 #ifndef Q_MOC_RUN
 # include <ros/ros.h>
@@ -10,13 +10,13 @@
 namespace wolf_rviz_plugin
 {
 
-class WolfControllerPanel: public rviz::Panel
+class WolfPanel: public rviz::Panel
 {
 
 Q_OBJECT
 public:
 
-  WolfControllerPanel( QWidget* parent = nullptr );
+  WolfPanel( QWidget* parent = nullptr );
 
   virtual void load( const rviz::Config& config );
   virtual void save( rviz::Config config ) const;
@@ -29,4 +29,4 @@ private:
 
 } // end namespace wolf_rviz_plugin
 
-#endif // WOLF_CONTROLLER_PANEL_H
+#endif // WOLF_PANEL_H

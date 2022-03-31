@@ -1,9 +1,9 @@
 <library path="lib/libwolf_rviz_plugin">
-  <class name="wolf_rviz_plugin/WolfControllerPanel"
-         type="wolf_rviz_plugin::WolfControllerPanel"
+  <class name="wolf_rviz_plugin/WolfPanel"
+         type="wolf_rviz_plugin::WolfPanel"
          base_class_type="rviz::Panel">
     <description>
-      A panel widget for the WoLF controller.
+      A panel widget for WoLF - Whole-body Locomotion Framework.
     </description>
   </class>
   <class name="wolf_rviz_plugin/Waypoints"

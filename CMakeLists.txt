@@ -28,7 +28,7 @@ endif()
 ## The generated MOC files are included automatically as headers.
 set(SRC_FILES
   src/waypoints_tool.cpp
-  src/wolf_controller_panel.cpp
+  src/wolf_panel.cpp
 )
 
 add_library(${PROJECT_NAME} ${SRC_FILES})
