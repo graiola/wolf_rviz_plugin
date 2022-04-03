@@ -22,7 +22,7 @@ WaypointsTool::WaypointsTool()
   , current_waypoints_property_( nullptr )
 {
   shortcut_key_ = 'l';
-  waypoints_pub_ = nh_.advertise<geometry_msgs::PointStamped>("/navpoints", 1000);  // FIXME
+  waypoints_pub_ = nh_.advertise<geometry_msgs::PointStamped>("/follow_waypoints_node/waypoints", 1000);  // FIXME
   waypoints_scale_.x = waypoints_scale_.y = waypoints_scale_.z = 0.25;
 }
 
@@ -119,7 +119,7 @@ void WaypointsTool::makewaypoints( const Ogre::Vector3& position )
   waypoint_.point.z = position.z;
   waypoint_.header.seq++;
   waypoint_.header.stamp = ros::Time::now();
-  waypoint_.header.frame_id = "/map"; // FIXME
+  waypoint_.header.frame_id = "map"; // FIXME
 
   waypoints_pub_.publish(waypoint_);
 }
