@@ -29,6 +29,8 @@ endif()
 set(SRC_FILES
   src/waypoints_tool.cpp
   src/wolf_panel.cpp
+  src/pose_tool.cpp
+  src/goal_tool.cpp
 )
 
 add_library(${PROJECT_NAME} ${SRC_FILES})
