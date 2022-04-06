@@ -27,10 +27,9 @@ endif()
 ## Here we specify the list of source files.
 ## The generated MOC files are included automatically as headers.
 set(SRC_FILES
-  src/waypoints_tool.cpp
   src/wolf_panel.cpp
   src/pose_tool.cpp
-  src/goal_tool.cpp
+  src/waypoint_tool.cpp
 )
 
 add_library(${PROJECT_NAME} ${SRC_FILES})

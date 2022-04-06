@@ -1,11 +1,9 @@
-#ifndef GOAL_TOOL_H
-#define GOAL_TOOL_H
+#ifndef WAYPOINT_TOOL_H
+#define WAYPOINT_TOOL_H
 
-#ifndef Q_MOC_RUN // See: https://bugreports.qt-project.org/browse/QTBUG-22829
+#ifndef Q_MOC_RUN
 #include <QObject>
-
 #include <ros/ros.h>
-
 #include "pose_tool.h"
 #endif
 
@@ -19,12 +17,12 @@ class StringProperty;
 namespace wolf_rviz_plugin
 {
 
-class GoalTool : public PoseTool
+class WaypointTool : public PoseTool
 {
   Q_OBJECT
 public:
-  GoalTool();
-  ~GoalTool() override
+  WaypointTool();
+  ~WaypointTool() override
   {
   }
   void onInitialize() override;

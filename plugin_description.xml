@@ -6,18 +6,11 @@
       A panel widget for WoLF - Whole-body Locomotion Framework.
     </description>
   </class>
-  <class name="wolf_rviz_plugin/Waypoints"
-         type="wolf_rviz_plugin::WaypointsTool"
+  <class name="wolf_rviz_plugin/Waypoint"
+         type="wolf_rviz_plugin::WaypointTool"
          base_class_type="rviz::Tool">
     <description>
       Tool for placing waypoints on the ground plane in rviz.
-    </description>
-  </class>
-  <class name="wolf_rviz_plugin/GoalTool"
-         type="wolf_rviz_plugin::GoalTool"
-         base_class_type="rviz::Tool">
-    <description>
-      Tool for publishing poses.
     </description>
   </class>
 </library>

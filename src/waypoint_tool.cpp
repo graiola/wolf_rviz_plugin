@@ -5,16 +5,16 @@
 #include <rviz/ogre_helpers/arrow.h>
 #include <rviz/properties/string_property.h>
 
-#include "goal_tool.h"
+#include "waypoint_tool.h"
 
 namespace wolf_rviz_plugin
 {
-GoalTool::GoalTool()
+WaypointTool::WaypointTool()
 {
   shortcut_key_ = 'g';
 }
 
-void GoalTool::onInitialize()
+void WaypointTool::onInitialize()
 {
   PoseTool::onInitialize();
   arrow_->setColor(1.0f, 0.0f, 1.0f, 1.0f);
@@ -26,11 +26,11 @@ void GoalTool::onInitialize()
   }
   catch (const ros::Exception& e)
   {
-    ROS_ERROR_STREAM_NAMED("GoalTool", e.what());
+    ROS_ERROR_STREAM_NAMED("WaypointTool", e.what());
   }
 }
 
-void GoalTool::onPoseSet(double x, double y, double theta)
+void WaypointTool::onPoseSet(double x, double y, double theta)
 {
   std::string fixed_frame = context_->getFixedFrame().toStdString();
   tf2::Quaternion quat;
@@ -52,4 +52,4 @@ void GoalTool::onPoseSet(double x, double y, double theta)
 } // end namespace wolf_rviz_plugin
 
 #include <pluginlib/class_list_macros.hpp>
-PLUGINLIB_EXPORT_CLASS(wolf_rviz_plugin::GoalTool, rviz::Tool)
+PLUGINLIB_EXPORT_CLASS(wolf_rviz_plugin::WaypointTool, rviz::Tool)
