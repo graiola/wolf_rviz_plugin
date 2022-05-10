@@ -10,7 +10,8 @@ namespace wolf_rviz_plugin
 WolfPanel::WolfPanel( QWidget* parent )
   : rviz::Panel( parent )
 {
-  ros_server_node_.init("wolf_panel",this);
+  nh_ = ros::NodeHandle("wolf_panel");
+  ros_server_node_.init(nh_,nh_.getNamespace(),this);
 }
 
 void WolfPanel::save( rviz::Config config ) const

@@ -24,7 +24,7 @@ public:
 private:
 
   rt_gui::RosServerNode ros_server_node_;
-
+  ros::NodeHandle nh_;
 };
 
 } // end namespace wolf_rviz_plugin
