@@ -22,7 +22,7 @@ void WaypointTool::onInitialize()
 
   try
   {
-    pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/follow_waypoints_node/waypoints", 1);
+    pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/waypoints_node/waypoints", 1);
   }
   catch (const ros::Exception& e)
   {
@@ -41,11 +41,11 @@ void WaypointTool::onPoseSet(double x, double y, double theta)
   goal.pose.position.y = y;
   goal.header.frame_id = fixed_frame;
   goal.header.stamp = ros::Time::now();
-  ROS_INFO("Setting goal: Frame:%s, Position(%.3f, %.3f, %.3f), Orientation(%.3f, %.3f, %.3f, %.3f) = "
-           "Angle: %.3f\n",
-           fixed_frame.c_str(), goal.pose.position.x, goal.pose.position.y, goal.pose.position.z,
-           goal.pose.orientation.x, goal.pose.orientation.y, goal.pose.orientation.z,
-           goal.pose.orientation.w, theta);
+  //ROS_INFO("Setting goal: Frame:%s, Position(%.3f, %.3f, %.3f), Orientation(%.3f, %.3f, %.3f, %.3f) = "
+  //         "Angle: %.3f\n",
+  //         fixed_frame.c_str(), goal.pose.position.x, goal.pose.position.y, goal.pose.position.z,
+  //         goal.pose.orientation.x, goal.pose.orientation.y, goal.pose.orientation.z,
+  //         goal.pose.orientation.w, theta);
   pub_.publish(goal);
 }
 
