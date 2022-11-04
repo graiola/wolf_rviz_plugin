@@ -30,6 +30,7 @@ set(SRC_FILES
   src/wolf_panel.cpp
   src/pose_tool.cpp
   src/waypoint_tool.cpp
+  src/home_tool.cpp
 )
 
 add_library(${PROJECT_NAME} ${SRC_FILES})

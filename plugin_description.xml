@@ -13,4 +13,11 @@
       Tool for placing waypoints on the ground plane in rviz.
     </description>
   </class>
+  <class name="wolf_rviz_plugin/Home"
+         type="wolf_rviz_plugin::HomeTool"
+         base_class_type="rviz::Tool">
+    <description>
+      Tool for placing a homing position on the ground plane in rviz.
+    </description>
+  </class>
 </library>
