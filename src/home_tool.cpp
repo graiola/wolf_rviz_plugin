@@ -22,7 +22,7 @@ void HomeTool::onInitialize()
 
   try
   {
-    pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/wolf_navigation/home", 1);
+    pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/task_homing/home", 1);
   }
   catch (const ros::Exception& e)
   {
