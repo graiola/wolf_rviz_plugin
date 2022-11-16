@@ -22,7 +22,7 @@ void WaypointTool::onInitialize()
 
   try
   {
-    pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/task_waypoints/waypoints", 1);
+    pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/waypoints", 1);
   }
   catch (const ros::Exception& e)
   {
