@@ -8,10 +8,13 @@ namespace wolf_rviz_plugin
 {
 
 WolfPanel::WolfPanel( QWidget* parent )
-  : rviz::Panel( parent )
+  : rviz::Panel( parent ) 
 {
-  nh_ = ros::NodeHandle("wolf_panel");
-  ros_server_node_.init(nh_,nh_.getNamespace(),this);
+  // Note: / is required to generate the panel in the global namespace
+  // i.e. /wolf_panel/... otherwise it inherits whatever namespace rviz has
+  std::string ros_namespace = "/wolf_panel";
+  nh_ = ros::NodeHandle(ros_namespace);
+  ros_server_node_.init(nh_,ros_namespace,this);
 }
 
 void WolfPanel::save( rviz::Config config ) const
