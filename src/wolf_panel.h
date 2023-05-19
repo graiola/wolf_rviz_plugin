@@ -4,7 +4,7 @@
 #ifndef Q_MOC_RUN
 # include <ros/ros.h>
 # include <rviz/panel.h>
-# include <rt_gui/support/server.h>
+# include <rt_gui_ros/support/server.h>
 #endif
 
 namespace wolf_rviz_plugin
