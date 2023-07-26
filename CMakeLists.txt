@@ -31,6 +31,7 @@ set(SRC_FILES
   src/pose_tool.cpp
   src/waypoint_tool.cpp
   src/home_tool.cpp
+  src/fleet_tool.cpp
 )
 
 add_library(${PROJECT_NAME} ${SRC_FILES})
