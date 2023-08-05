@@ -1,5 +1,5 @@
-#ifndef FLEET_TOOL_H
-#define FLEET_TOOL_H
+#ifndef PACK_TOOL_H
+#define PACK_TOOL_H
 
 #ifndef Q_MOC_RUN
 #include <QObject>
@@ -17,12 +17,12 @@ class StringProperty;
 namespace wolf_rviz_plugin
 {
 
-class FleetTool : public PoseTool
+class PackTool : public PoseTool
 {
   Q_OBJECT
 public:
-  FleetTool();
-  ~FleetTool() override
+  PackTool();
+  ~PackTool() override
   {
   }
   void onInitialize() override;

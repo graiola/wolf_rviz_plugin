@@ -20,11 +20,11 @@
       Tool for placing a homing position on the ground plane in rviz.
     </description>
   </class>
-  <class name="wolf_rviz_plugin/Fleet"
-         type="wolf_rviz_plugin::FleetTool"
+  <class name="wolf_rviz_plugin/Pack"
+         type="wolf_rviz_plugin::PackTool"
          base_class_type="rviz::Tool">
     <description>
-      Tool for giving a pose to a robot fleet.
+      Tool for giving a pose to a pack of wolves.
     </description>
   </class>
 </library>
