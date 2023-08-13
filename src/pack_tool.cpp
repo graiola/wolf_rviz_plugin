@@ -18,7 +18,7 @@ void PackTool::onInitialize()
 {
   PoseTool::onInitialize();
   arrow_->setColor(0.0f, 0.0f, 1.0f, 1.0f);
-  setName("WolfPack");
+  setName("Pack goal");
 
   try
   {
