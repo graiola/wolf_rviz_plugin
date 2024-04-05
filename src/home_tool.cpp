@@ -12,6 +12,10 @@ namespace wolf_rviz_plugin
 HomeTool::HomeTool()
 {
   shortcut_key_ = 'h';
+
+  topic_property_ = new rviz::StringProperty( "Topic", "home",
+                                              "The topic on which to publish navigation goals.",
+                                              getPropertyContainer(), SLOT( updateTopic() ), this );
 }
 
 void HomeTool::onInitialize()
@@ -19,10 +23,14 @@ void HomeTool::onInitialize()
   PoseTool::onInitialize();
   arrow_->setColor(0.0f, 1.0f, 0.0f, 1.0f);
   setName("Home");
+  updateTopic();
+}
 
+void HomeTool::updateTopic()
+{
   try
   {
-    pub_ = nh_.advertise<geometry_msgs::PoseStamped>("home", 1);
+    pub_ = nh_.advertise<geometry_msgs::PoseStamped>( topic_property_->getStdString(), 1 );
   }
   catch (const ros::Exception& e)
   {
@@ -30,7 +38,7 @@ void HomeTool::onInitialize()
   }
 }
 
-void HomeTool::onPoseSet(double x, double y, double theta)
+void HomeTool::onPoseSet(double x, double y, double z, double theta)
 {
   std::string fixed_frame = context_->getFixedFrame().toStdString();
   tf2::Quaternion quat;
@@ -39,6 +47,7 @@ void HomeTool::onPoseSet(double x, double y, double theta)
   goal.pose.orientation = tf2::toMsg(quat);
   goal.pose.position.x = x;
   goal.pose.position.y = y;
+  goal.pose.position.z = z;
   goal.header.frame_id = fixed_frame;
   goal.header.stamp = ros::Time::now();
   //ROS_INFO("Setting goal: Frame:%s, Position(%.3f, %.3f, %.3f), Orientation(%.3f, %.3f, %.3f, %.3f) = "

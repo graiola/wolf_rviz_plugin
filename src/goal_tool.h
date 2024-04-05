@@ -1,5 +1,5 @@
-#ifndef PACK_TOOL_H
-#define PACK_TOOL_H
+#ifndef GOAL_TOOL_H
+#define GOAL_TOOL_H
 
 #ifndef Q_MOC_RUN
 #include <QObject>
@@ -17,12 +17,12 @@ class StringProperty;
 namespace wolf_rviz_plugin
 {
 
-class PackTool : public PoseTool
+class GoalTool : public PoseTool
 {
   Q_OBJECT
 public:
-  PackTool();
-  ~PackTool() override
+  GoalTool();
+  ~GoalTool() override
   {
   }
   void onInitialize() override;
@@ -30,9 +30,14 @@ public:
 protected:
   void onPoseSet(double x, double y, double z, double theta) override;
 
+private Q_SLOTS:
+  void updateTopic();
+
 private:
   ros::NodeHandle nh_;
   ros::Publisher pub_;
+
+  rviz::StringProperty* topic_property_;
 };
 
 } // namespace wolf_rviz_plugin

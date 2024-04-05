@@ -10,14 +10,21 @@
          type="wolf_rviz_plugin::WaypointTool"
          base_class_type="rviz::Tool">
     <description>
-      Tool for placing waypoints on the ground plane in rviz.
+      Tool for placing waypoints in rviz.
     </description>
   </class>
   <class name="wolf_rviz_plugin/Home"
          type="wolf_rviz_plugin::HomeTool"
          base_class_type="rviz::Tool">
     <description>
-      Tool for placing a homing position on the ground plane in rviz.
+      Tool for placing a homing position in rviz.
+    </description>
+  </class>
+  <class name="wolf_rviz_plugin/Goal"
+         type="wolf_rviz_plugin::GoalTool"
+         base_class_type="rviz::Tool">
+    <description>
+      Tool for placing a goal position in rviz.
     </description>
   </class>
   <class name="wolf_rviz_plugin/Pack"

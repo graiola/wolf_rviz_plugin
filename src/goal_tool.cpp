@@ -5,32 +5,41 @@
 #include <rviz/ogre_helpers/arrow.h>
 #include <rviz/properties/string_property.h>
 
-#include "pack_tool.h"
+#include "goal_tool.h"
 
 namespace wolf_rviz_plugin
 {
-PackTool::PackTool()
+
+GoalTool::GoalTool()
 {
-  shortcut_key_ = 'p';
+  shortcut_key_ = 'g';
+
+  topic_property_ = new rviz::StringProperty( "Topic", "goal",
+                                              "The topic on which to publish navigation goals.",
+                                              getPropertyContainer(), SLOT( updateTopic() ), this );
 }
 
-void PackTool::onInitialize()
+void GoalTool::onInitialize()
 {
   PoseTool::onInitialize();
-  arrow_->setColor(0.0f, 0.0f, 1.0f, 1.0f);
-  setName("Pack goal");
+  arrow_->setColor(0.0f, 1.0f, 0.0f, 1.0f);
+  setName("3D Nav Goal");
+  updateTopic();
+}
 
+void GoalTool::updateTopic()
+{
   try
   {
-    pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/wolf_pack_commander/goto_pose", 1);
+    pub_ = nh_.advertise<geometry_msgs::PoseStamped>( topic_property_->getStdString(), 1 );
   }
   catch (const ros::Exception& e)
   {
-    ROS_ERROR_STREAM_NAMED("PackTool", e.what());
+    ROS_ERROR_STREAM_NAMED("GoalTool", e.what());
   }
 }
 
-void PackTool::onPoseSet(double x, double y, double z, double theta)
+void GoalTool::onPoseSet(double x, double y, double z, double theta)
 {
   std::string fixed_frame = context_->getFixedFrame().toStdString();
   tf2::Quaternion quat;
@@ -53,4 +62,4 @@ void PackTool::onPoseSet(double x, double y, double z, double theta)
 } // end namespace wolf_rviz_plugin
 
 #include <pluginlib/class_list_macros.hpp>
-PLUGINLIB_EXPORT_CLASS(wolf_rviz_plugin::PackTool, rviz::Tool)
+PLUGINLIB_EXPORT_CLASS(wolf_rviz_plugin::GoalTool, rviz::Tool)

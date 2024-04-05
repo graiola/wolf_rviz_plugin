@@ -28,14 +28,15 @@ public:
   int processMouseEvent(rviz::ViewportMouseEvent& event) override;
 
 protected:
-  virtual void onPoseSet(double x, double y, double theta) = 0;
+  virtual void onPoseSet(double x, double y, double z, double theta) = 0;
 
   rviz::Arrow* arrow_;
 
   enum State
   {
     Position,
-    Orientation
+    Orientation,
+    Height
   };
   State state_;
 

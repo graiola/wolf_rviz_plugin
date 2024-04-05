@@ -1,5 +1,5 @@
-#ifndef HOMNE_TOOL_H
-#define HOMNE_TOOL_H
+#ifndef HOME_TOOL_H
+#define HOME_TOOL_H
 
 #ifndef Q_MOC_RUN
 #include <QObject>
@@ -28,11 +28,16 @@ public:
   void onInitialize() override;
 
 protected:
-  void onPoseSet(double x, double y, double theta) override;
+  void onPoseSet(double x, double y, double z, double theta) override;
+
+private Q_SLOTS:
+  void updateTopic();
 
 private:
   ros::NodeHandle nh_;
   ros::Publisher pub_;
+
+  rviz::StringProperty* topic_property_;
 };
 
 } // namespace wolf_rviz_plugin

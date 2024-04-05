@@ -28,7 +28,7 @@ public:
   void onInitialize() override;
 
 protected:
-  void onPoseSet(double x, double y, double theta) override;
+  void onPoseSet(double x, double y, double z, double theta) override;
 
 private:
   ros::NodeHandle nh_;

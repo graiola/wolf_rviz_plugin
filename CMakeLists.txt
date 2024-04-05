@@ -32,6 +32,7 @@ set(SRC_FILES
   src/waypoint_tool.cpp
   src/home_tool.cpp
   src/pack_tool.cpp
+  src/goal_tool.cpp
 )
 
 add_library(${PROJECT_NAME} ${SRC_FILES})

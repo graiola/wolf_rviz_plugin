@@ -30,7 +30,7 @@ void WaypointTool::onInitialize()
   }
 }
 
-void WaypointTool::onPoseSet(double x, double y, double theta)
+void WaypointTool::onPoseSet(double x, double y, double z, double theta)
 {
   std::string fixed_frame = context_->getFixedFrame().toStdString();
   tf2::Quaternion quat;
@@ -39,6 +39,7 @@ void WaypointTool::onPoseSet(double x, double y, double theta)
   goal.pose.orientation = tf2::toMsg(quat);
   goal.pose.position.x = x;
   goal.pose.position.y = y;
+  goal.pose.position.z = z;
   goal.header.frame_id = fixed_frame;
   goal.header.stamp = ros::Time::now();
   //ROS_INFO("Setting goal: Frame:%s, Position(%.3f, %.3f, %.3f), Orientation(%.3f, %.3f, %.3f, %.3f) = "
