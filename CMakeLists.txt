@@ -33,6 +33,7 @@ set(SRC_FILES
   src/home_tool.cpp
   src/pack_tool.cpp
   src/goal_tool.cpp
+  src/initialpose_tool.cpp
 )
 
 add_library(${PROJECT_NAME} ${SRC_FILES})

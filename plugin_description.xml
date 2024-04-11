@@ -27,6 +27,13 @@
       Tool for placing a goal position in rviz.
     </description>
   </class>
+  <class name="wolf_rviz_plugin/InitialPose"
+         type="wolf_rviz_plugin::InitialPoseTool"
+         base_class_type="rviz::Tool">
+    <description>
+      Tool for placing the initial position in rviz.
+    </description>
+  </class>
   <class name="wolf_rviz_plugin/Pack"
          type="wolf_rviz_plugin::PackTool"
          base_class_type="rviz::Tool">
