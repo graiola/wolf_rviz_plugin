@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(wolf_rviz_plugin)
-find_package(catkin REQUIRED COMPONENTS rviz rt_gui)
+find_package(catkin REQUIRED COMPONENTS rviz rt_gui_ros)
 catkin_package()
 include_directories(${catkin_INCLUDE_DIRS})
 link_directories(${catkin_LIBRARY_DIRS})
