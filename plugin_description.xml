@@ -1,4 +1,5 @@
-<library path="lib/libwolf_rviz_plugin">
+<!-- ROS -->
+<library path="libwolf_rviz_plugin">
   <class name="wolf_rviz_plugin/WolfPanel"
          type="wolf_rviz_plugin::WolfPanel"
          base_class_type="rviz::Panel">
@@ -37,6 +38,52 @@
   <class name="wolf_rviz_plugin/Pack"
          type="wolf_rviz_plugin::PackTool"
          base_class_type="rviz::Tool">
+    <description>
+      Tool for giving a pose to a pack of wolves.
+    </description>
+  </class>
+</library>
+
+<!-- ROS2 -->
+<library path="wolf_rviz_plugin">
+  <class name="wolf_rviz_plugin/WolfPanel"
+         type="wolf_rviz_plugin::WolfPanel"
+         base_class_type="rviz_common::Panel">
+    <description>
+      A panel widget for WoLF - Whole-body Locomotion Framework.
+    </description>
+  </class>
+  <class name="wolf_rviz_plugin/Waypoint"
+         type="wolf_rviz_plugin::WaypointTool"
+         base_class_type="rviz_common::Tool">
+    <description>
+      Tool for placing waypoints in rviz.
+    </description>
+  </class>
+  <class name="wolf_rviz_plugin/Home"
+         type="wolf_rviz_plugin::HomeTool"
+         base_class_type="rviz_common::Tool">
+    <description>
+      Tool for placing a homing position in rviz.
+    </description>
+  </class>
+  <class name="wolf_rviz_plugin/Goal"
+         type="wolf_rviz_plugin::GoalTool"
+         base_class_type="rviz_common::Tool">
+    <description>
+      Tool for placing a goal position in rviz.
+    </description>
+  </class>
+  <class name="wolf_rviz_plugin/InitialPose"
+         type="wolf_rviz_plugin::InitialPoseTool"
+         base_class_type="rviz_common::Tool">
+    <description>
+      Tool for placing the initial position in rviz.
+    </description>
+  </class>
+  <class name="wolf_rviz_plugin/Pack"
+         type="wolf_rviz_plugin::PackTool"
+         base_class_type="rviz_common::Tool">
     <description>
       Tool for giving a pose to a pack of wolves.
     </description>

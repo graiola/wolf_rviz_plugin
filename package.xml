@@ -1,26 +1,30 @@
-<package>
+<?xml version="1.0"?>
+<package format="3">
   <name>wolf_rviz_plugin</name>
   <version>0.0.1</version>
   <description>
      WoLF plugins for RViz.
   </description>
+
   <maintainer email="gennaro.raiola@gmail.com">Gennaro Raiola</maintainer>
   <license>BSD</license>
 
   <author>Gennaro Raiola</author>
 
-  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
+  <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
 
-  <build_depend>qtbase5-dev</build_depend>
-  <build_depend>rviz</build_depend>
-  <build_depend>rt_gui_ros</build_depend>
+  <depend>qtbase5-dev</depend>
+  <depend condition="$ROS_VERSION == 1">rviz</depend>
+  <depend condition="$ROS_VERSION == 2">rviz2</depend>
+  <depend>rt_gui_ros</depend>
+  <depend>pluginlib</depend>
 
-  <run_depend>libqt5-core</run_depend>
-  <run_depend>libqt5-gui</run_depend>
-  <run_depend>libqt5-widgets</run_depend>
-  <run_depend>rviz</run_depend>
-
+  <!-- The export tag contains other, unspecified, tags -->
   <export>
-      <rviz plugin="${prefix}/plugin_description.xml"/>
+    <build_type condition="$ROS_VERSION == 2">ament_cmake</build_type>
+    <build_type condition="$ROS_VERSION == 1">catkin</build_type>
+    <rviz plugin="${prefix}/plugin_description.xml"/>
   </export>
+
 </package>
