@@ -86,8 +86,6 @@ elseif(${ament_cmake_FOUND})
 
 endif()
 
-find_package(${RVIZ_VERSION} REQUIRED)
-
 ## This setting causes Qt's "MOC" generation to happen automatically.
 set(CMAKE_AUTOMOC ON)
 
