@@ -27,5 +27,5 @@ void WolfPanel::load( const rviz_common::Config& config )
 
 } // end namespace wolf_rviz_plugin
 
-#include <pluginlib/class_list_macros.h>
+#include <pluginlib/class_list_macros.hpp>
 PLUGINLIB_EXPORT_CLASS(wolf_rviz_plugin::WolfPanel,rviz_common::Panel)
