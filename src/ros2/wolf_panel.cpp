@@ -11,7 +11,7 @@ WolfPanel::WolfPanel( QWidget* parent )
   : rviz_common::Panel( parent )
 {
   // Use wolf_rviz name
-  std::string ros_namespace = "wolf_rviz";
+  std::string ros_namespace = "wolf_rviz"; // Note the local name! see the ros1 implementation
   ros_server_node_.init(ros_namespace,this);
 }
 

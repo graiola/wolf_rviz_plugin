@@ -17,7 +17,7 @@ WolfPanel::WolfPanel( QWidget* parent )
   //ros_server_node_.init(nh_,ros_namespace,this);
 
   // Use wolf_rviz name
-  std::string ros_namespace = "wolf_rviz";
+  std::string ros_namespace = "/wolf_rviz";
   ros_server_node_.init(ros_namespace,this);
 }
 
