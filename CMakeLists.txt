@@ -19,10 +19,14 @@ else()
 endif()
 
 #ROS
-find_package(rt_gui_ros REQUIRED)
-find_package(pluginlib REQUIRED)
 find_package(catkin QUIET)
 find_package(ament_cmake QUIET)
+
+
+find_package(rt_gui_ros REQUIRED)
+find_package(pluginlib REQUIRED)
+find_package(cv_bridge REQUIRED)
+find_package(OpenCV REQUIRED)
 
 if(${catkin_FOUND})
     set(ROS_VERSION "ros")
@@ -33,19 +37,18 @@ if(${catkin_FOUND})
 
     find_package(rviz REQUIRED)
     find_package(geometry_msgs REQUIRED)
-    find_package(OpenCV REQUIRED)
 
     include_directories(
         ${rviz_INCLUDE_DIRS}
         ${rt_gui_ros_INCLUDE_DIRS}
         ${pluginlib_INCLUDE_DIRS}
         ${OpenCV_INCLUDE_DIRS}
+        ${cv_bridge_INCLUDE_DIRS}
         ${geometry_msgs_INCLUDE_DIRS})
 
     set(ROS_LIBRARIES
         ${pluginlib_LIBRARIES}
         ${rt_gui_ros_LIBRARIES}
-        ${OpenCV_LIBRARIES}
         ${rviz_LIBRARIES})
 
 elseif(${ament_cmake_FOUND})
@@ -70,6 +73,7 @@ elseif(${ament_cmake_FOUND})
         ${rviz_common_INCLUDE_DIRS}
         ${rviz_default_plugins_INCLUDE_DIRS}
         ${geometry_msgs_INCLUDE_DIRS}
+        ${OpenCV_INCLUDE_DIRS}
         ${tf2_geometry_msgs_INCLUDE_DIRS})
 
     set(ROS_LIBRARIES
@@ -112,12 +116,11 @@ set(SRC_FILES
   src/${ROS_VERSION}/pack_tool.cpp
   src/${ROS_VERSION}/goal_tool.cpp
   src/${ROS_VERSION}/initialpose_tool.cpp
-  src/${ROS_VERSION}/image_overlay.cpp
   src/${ROS_VERSION}/image_overlay_display.cpp
 )
 
 add_library(${PROJECT_NAME} SHARED ${SRC_FILES})
-target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} ${ROS_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} ${ROS_LIBRARIES} ${OpenCV_LIBRARIES} ${cv_bridge_LIBRARIES})
 
 ## Install rules
 install(TARGETS ${PROJECT_NAME}
