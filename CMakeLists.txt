@@ -33,16 +33,19 @@ if(${catkin_FOUND})
 
     find_package(rviz REQUIRED)
     find_package(geometry_msgs REQUIRED)
+    find_package(OpenCV REQUIRED)
 
     include_directories(
         ${rviz_INCLUDE_DIRS}
         ${rt_gui_ros_INCLUDE_DIRS}
         ${pluginlib_INCLUDE_DIRS}
+        ${OpenCV_INCLUDE_DIRS}
         ${geometry_msgs_INCLUDE_DIRS})
 
     set(ROS_LIBRARIES
         ${pluginlib_LIBRARIES}
         ${rt_gui_ros_LIBRARIES}
+        ${OpenCV_LIBRARIES}
         ${rviz_LIBRARIES})
 
 elseif(${ament_cmake_FOUND})
@@ -109,6 +112,8 @@ set(SRC_FILES
   src/${ROS_VERSION}/pack_tool.cpp
   src/${ROS_VERSION}/goal_tool.cpp
   src/${ROS_VERSION}/initialpose_tool.cpp
+  src/${ROS_VERSION}/image_overlay.cpp
+  src/${ROS_VERSION}/image_overlay_display.cpp
 )
 
 add_library(${PROJECT_NAME} SHARED ${SRC_FILES})

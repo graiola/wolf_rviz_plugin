@@ -42,6 +42,13 @@
       Tool for giving a pose to a pack of wolves.
     </description>
   </class>
+    <class name="wolf_rviz_plugin/ImageOverlay"
+         type="wolf_rviz_plugin::ImageOverlayDisplay"
+         base_class_type="rviz::Display">
+    <description>
+      Display image overlays
+    </description>
+  </class>
 </library>
 
 <!-- ROS2 -->
