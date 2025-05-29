@@ -21,7 +21,7 @@ using namespace rviz;
 
 ImageOverlayDisplay::ImageOverlayDisplay()
 {
-  topic_property_ = new RosTopicProperty("Image Overlay Topic", "",
+  topic_property_ = new RosTopicProperty("Image Overlay Topic", "image_overlays",
     ros::message_traits::datatype<wolf_msgs::ImageOverlayArray>(),
     "ImageOverlayArray topic to subscribe to.",
     this, SLOT(updateTopic()));
@@ -185,9 +185,17 @@ void ImageOverlayDisplay::processOverlay(const wolf_msgs::ImageOverlay& overlay)
   data.scene_node = scene_node_->createChildSceneNode();
 
   // Apply pose
-  Ogre::Vector3 position(data.pose.position.x, data.pose.position.y, data.pose.position.z);
-  Ogre::Quaternion orientation(data.pose.orientation.w, data.pose.orientation.x,
-                               data.pose.orientation.y, data.pose.orientation.z);
+  //Ogre::Vector3 position(data.pose.position.x, data.pose.position.y, data.pose.position.z);
+  //Ogre::Quaternion orientation(data.pose.orientation.w, data.pose.orientation.x,
+  //                             data.pose.orientation.y, data.pose.orientation.z);
+
+
+  // Flatten Z to project on ground
+  Ogre::Vector3 position(data.pose.position.x, data.pose.position.y, 0.0f);
+
+// Orient image to lie flat on ground
+  Ogre::Quaternion orientation(Ogre::Degree(-90), Ogre::Vector3::UNIT_X);
+
   data.scene_node->setPosition(position);
   data.scene_node->setOrientation(orientation);
 
