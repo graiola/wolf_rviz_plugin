@@ -1,37 +1,56 @@
-#include <geometry_msgs/PoseStamped.h>
+#include "goal_tool.h"
+
+#include <pluginlib/class_list_macros.hpp>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 
 #include <rviz/display_context.h>
 #include <rviz/ogre_helpers/arrow.h>
 #include <rviz/properties/string_property.h>
-
-#include "goal_tool.h"
+#include <rviz/config.h>
 
 namespace wolf_rviz_plugin
 {
 
 GoalTool::GoalTool()
 {
+  // Keep your preferred shortcut; ensure it doesn't collide with WaypointTool.
   shortcut_key_ = 'g';
-
-  topic_property_ = new rviz::StringProperty( "Topic", "goal",
-                                              "The topic on which to publish navigation goals.",
-                                              getPropertyContainer(), SLOT( updateTopic() ), this );
 }
 
 void GoalTool::onInitialize()
 {
   PoseTool::onInitialize();
+
+  // Green arrow for goal (matches your previous color).
   arrow_->setColor(0.0f, 1.0f, 0.0f, 1.0f);
-  setName("3D Nav Goal");
+
+  // Configurable + persistent topic (default "goal").
+  topic_property_ = new rviz::StringProperty(
+      "Topic", "goal",
+      "The topic on which to publish 3D navigation goals.",
+      getPropertyContainer(), SLOT(updateTopic()), this);
+
+  label_property_ = new rviz::StringProperty(
+      "Label", "Goal3D",
+      "Text shown on the RViz toolbar for this tool instance.",
+      getPropertyContainer(), SLOT(updateLabel()), this);
+
+
   updateTopic();
+  updateLabel();
+}
+
+void GoalTool::updateLabel() {
+  if (label_property_)
+    setName(label_property_->getString());
 }
 
 void GoalTool::updateTopic()
 {
   try
   {
-    pub_ = nh_.advertise<geometry_msgs::PoseStamped>( topic_property_->getStdString(), 1 );
+    pub_.shutdown();
+    pub_ = nh_.advertise<geometry_msgs::PoseStamped>(topic_property_->getStdString(), 1);
   }
   catch (const ros::Exception& e)
   {
@@ -41,25 +60,38 @@ void GoalTool::updateTopic()
 
 void GoalTool::onPoseSet(double x, double y, double z, double theta)
 {
-  std::string fixed_frame = context_->getFixedFrame().toStdString();
+  const std::string fixed_frame = context_->getFixedFrame().toStdString();
+
   tf2::Quaternion quat;
   quat.setRPY(0.0, 0.0, theta);
-  geometry_msgs::PoseStamped goal;
-  goal.pose.orientation = tf2::toMsg(quat);
-  goal.pose.position.x = x;
-  goal.pose.position.y = y;
-  goal.pose.position.z = z;
-  goal.header.frame_id = fixed_frame;
-  goal.header.stamp = ros::Time::now();
-  //ROS_INFO("Setting goal: Frame:%s, Position(%.3f, %.3f, %.3f), Orientation(%.3f, %.3f, %.3f, %.3f) = "
-  //         "Angle: %.3f\n",
-  //         fixed_frame.c_str(), goal.pose.position.x, goal.pose.position.y, goal.pose.position.z,
-  //         goal.pose.orientation.x, goal.pose.orientation.y, goal.pose.orientation.z,
-  //         goal.pose.orientation.w, theta);
-  pub_.publish(goal);
+
+  geometry_msgs::PoseStamped msg;
+  msg.header.frame_id = fixed_frame;
+  msg.header.stamp    = ros::Time::now();
+  msg.pose.position.x = x;
+  msg.pose.position.y = y;
+  msg.pose.position.z = z;
+  msg.pose.orientation = tf2::toMsg(quat);
+
+  pub_.publish(msg);
 }
 
-} // end namespace wolf_rviz_plugin
+void GoalTool::save(rviz::Config config) const
+{
+  PoseTool::save(config);
+  if (topic_property_)
+    config.mapSetValue("Topic", topic_property_->getString());
+}
 
-#include <pluginlib/class_list_macros.hpp>
+void GoalTool::load(const rviz::Config& config)
+{
+  PoseTool::load(config);
+  QString t;
+  if (config.mapGetString("Topic", &t) && topic_property_)
+    topic_property_->setString(t);
+  updateTopic();
+}
+
+} // namespace wolf_rviz_plugin
+
 PLUGINLIB_EXPORT_CLASS(wolf_rviz_plugin::GoalTool, rviz::Tool)
