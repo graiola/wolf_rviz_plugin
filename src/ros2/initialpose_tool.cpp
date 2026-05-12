@@ -8,7 +8,13 @@
 #include <rviz_common/properties/float_property.hpp>
 #include <rviz_common/properties/qos_profile_property.hpp>
 #include <tf2/LinearMath/Quaternion.h>
-#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#if __has_include(<tf2_geometry_msgs/tf2_geometry_msgs/tf2_geometry_msgs.hpp>)
+  #include <tf2_geometry_msgs/tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+#elif __has_include(<tf2_geometry_msgs/tf2_geometry_msgs.hpp>)
+  #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+#else
+  #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#endif
 #include <rviz_rendering/objects/arrow.hpp>
 
 namespace wolf_rviz_plugin

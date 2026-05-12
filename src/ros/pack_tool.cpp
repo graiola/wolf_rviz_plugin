@@ -1,5 +1,11 @@
 #include <geometry_msgs/PoseStamped.h>
-#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#if __has_include(<tf2_geometry_msgs/tf2_geometry_msgs/tf2_geometry_msgs.hpp>)
+  #include <tf2_geometry_msgs/tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+#elif __has_include(<tf2_geometry_msgs/tf2_geometry_msgs.hpp>)
+  #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+#else
+  #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#endif
 
 #include <rviz/display_context.h>
 #include <rviz/ogre_helpers/arrow.h>
